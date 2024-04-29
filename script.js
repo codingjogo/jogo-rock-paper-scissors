@@ -3,7 +3,7 @@ let humanScore = 0;
 let cpuScore = 0;
 
 const getComputerChoice = () => {
-    let index = Math.floor(Math.random() * (attacks.length - 0) + 0);
+    let index = Math.floor(Math.random() * attacks.length);
     let cpuAttack = attacks[index];
 
     return cpuAttack;
