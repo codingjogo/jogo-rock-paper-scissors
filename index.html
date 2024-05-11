@@ -6,9 +6,95 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css">
     <title>Rock Paper Scissors</title>
+    <style type="text/tailwindcss">
+        .bg_black_color {
+            background-color: #000000;
+        }
+
+        .bg_gray_color {
+            background-color: #D9D9D9;
+        }
+
+        .bg_white_color {
+            background-color: #FFFFFF;
+        }
+
+        .primary_color {
+            background-color: #153448;
+        }
+
+        .btn_color {
+            background-color: #FFFAB7;
+            color: black;
+        }
+
+        .play {
+            font-size: 40px;
+            padding: 24px 120px;
+        }
+
+        .container {
+            max-width: 1440px;
+            margin: auto;
+        }
+    </style>
+    
 </head>
-<body>
-    <h1 class="bg-slate-300 text-3xl">Hello World</h1>
+<body class="primary_color">
+
+    <!-- COMPONENT ALERT WHEN SOMEONE WINS A ROUND-->
+    <!-- <div id="alert-wins" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 btn_color text-white font-bold text-[96px] py-2 px-12 rounded-xl shadow-xl">
+        <span>YOU WIN!</span>
+    </div> -->
+
+    <main class="container flex flex-col gap-[32px]">
+        <!-- COMPONENT OF YOU VS CPU -->
+        <div class="flex justify-between items-center ">
+            <span class="font-bold text-white text-[128px]">YOU</span>
+            <span class="font-bold text-white text-[64px]">VS</span>
+            <span class="font-bold text-white text-[128px]">CPU</span>
+        </div>
+
+        <!-- COMPONENT OF SCORES AND CHOSEN ATTACK -->   
+        <!-- if (paper) padding === p-12 && bg-color-gray  -->
+        <!-- if (rock) padding === p-8 bg-color-black -->
+        <!-- if (scissors) div === p-10 bg-color-white -->
+        <div class="flex justify-between items-center text-white">
+            <div class="flex flex-col items-center gap-[48px]">
+                <span id="player-score" class="font-semibold text-[96px]">0</span>
+                <div class="w-[250px] rounded-full bg_gray_color">
+                    <img class="w-full h-full p-10" src="images/scissors.png" alt="PAPER-IMAGE">
+                </div>
+            </div>
+
+            <img src="images/rock-paper-scissors.png" alt="rock-paper-scissors's image">
+
+            <div class="flex flex-col items-center gap-[48px]">
+                <span id="cpu-score" class="font-semibold text-[96px]">0</span>
+                <div class="w-[250px] rounded-full bg_gray_color">
+                    <img class="w-full h-full p-8" src="images/stone.png" alt="PAPER-IMAGE">
+                </div>
+            </div>
+        </div>
+
+        <!-- COMPONENT OF CHOICES -->
+        <div class="flex justify-center items-center">
+            <div class="flex gap-[64px]">
+                <div id="btn_rock" class="cursor-pointer w-[150px] bg_black_color rounded-full">
+                    <img class="h-full p-4 object-contain img-sm" src="images/stone.png" alt="ROCK-IMAGE">
+                </div>
+
+                <div id="btn_paper" class="cursor-pointer w-[150px] bg_gray_color rounded-full">
+                    <img class="w-full h-full p-8 object-contain img-sm" src="images/essay.png" alt="PAPER-IMAGE">
+                </div>
+
+                <div id="btn_scissors" class="cursor-pointer w-[150px] bg_white_color rounded-full">
+                    <img  class="w-full h-full p-4 object-contain img-sm" src="images/scissors.png" alt="Scissors">
+                </div>
+            </div>
+        </div>
+    </main>
+    
     <script src="script.js"></script>
 </body>
 </html>
