@@ -6,9 +6,29 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css">
     <title>Rock Paper Scissors</title>
+    <style type="text/tailwindcss">
+        body {
+            @apply p-4
+        }
+
+        button {
+            @apply py-2 px-12 bg-slate-600 rounded-md shadow-md font-semibold text-xl text-white;
+        }
+      </style>
 </head>
 <body>
-    <h1 class="bg-slate-300 text-3xl">Hello World</h1>
+    <!-- winner component -->
+    <!-- either absolute position or hidden -->
+    <div class="winnerComponent hidden top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+        <div class="flex flex-col gap-4">
+            <span id="who-win" class="text-[96px] font-semibold"></span>
+            <button id="reset-button" type="button" class="bg-yellow-300 font-semibold text-[96px] px-2 py-12">RESET</button>
+        </div>
+    </div>
+
+    <button type="button" class="attack">ROCK</button>
+    <button type="button" class="attack">PAPER</button>
+    <button type="button" class="attack">SCISSORS</button>
     <!--  
 
         - Must have a history
