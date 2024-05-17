@@ -1,57 +1,184 @@
-const choices = ['rock', 'paper', 'scissors']
+// UI?
+let choices = ['rock', 'paper', 'scissors'];
 
-// random choice index 0 - 2
-const computerChoice = () => Math.floor(Math.random() * (choices.length))
-console.log(computerChoice())
-
-let humanScore = 0;
+// states:
+let playerScore = 0;
 let computerScore = 0;
+let isWon = false;
+let whoWin = null;
 
-// condition checks if there's a winner
-while (humanScore < 3 && computerScore < 3) {
-    const playerChoice = prompt('Enter rock, paper, or scissors: ')
-    const playerInput = playerChoice.toLowerCase();
+// ALERT COMPONENT 
+const alert1 = document.querySelector('#alert1')
+const alert2 = document.querySelector('#alert2')
 
-    // if player input doesn't match in choices
-    if (!choices.includes(playerInput)) {
-        alert('invalid choice');
-        continue; // back to the top of the loop
+// ON play COMPONENT
+const onPlayComponent = document.querySelector('#on-play-component')
+const onPlayButton = document.querySelector('.btn-play')
+
+// buttons of attack choices
+const choicesAttackButtons = document.querySelectorAll('.attack-btn')
+
+const closeAlert = (id) => {
+    console.log(`THE ID ${id} component is removed`)
+    document.querySelector(`#${id}`).classList.remove('absolute')
+    document.querySelector(`#${id}`).classList.add('hidden')
+}
+
+// reset button
+// const resetButton = document.querySelector('#reset-button');
+
+// winner component
+// const winnerComponent = document.querySelector('.winnerComponent');
+// let whoWinText = document.querySelector('#who-win');
+
+// buttons component
+const attackButtonsChoices = document.querySelectorAll('.attack');
+
+for(const button of attackButtonsChoices) {
+        button.addEventListener('click', (e) => {
+            const playerChoice = e.target.textContent;
+            console.log(playerChoice)
+            if (!isWon) {
+                playRound(playerChoice);
+            } else {
+                console.log(`Reset the game to continue;`)
+            }
+        })
+}
+
+// computerSelect();
+const computerSelect = () => {
+    const cpuAttack = choices[Math.floor(Math.random() * choices.length)]
+    console.log(`CPU choice attack: ${cpuAttack}`)
+    return cpuAttack;
+}
+
+// playerSelect();
+const playerSelect = (attack) => {
+    const playerAttack = attack.toLowerCase();
+    console.log(`Player choice attack: ${playerAttack}`)
+    return playerAttack;
+}
+
+// playRound();
+// checkWinner(playerAttack):
+let round = 0;
+const playRound = (playerChoice) => {
+    round++;
+    const playerAttack = playerSelect(playerChoice)
+    checkWinner(playerAttack, computerSelect());
+}
+
+const hideButtonChoices = () => {
+    for(const button of attackButtonsChoices) {
+        button.classList.add('hidden');
     }
+}
 
-    // return string cuz I encounter error when using function directly to condition if else....
-    const cpuChoice = computerChoice();
+const unHideButtonChoices = () => {
+    for(const button of attackButtonsChoices) {
+        button.classList.remove('hidden');
+        button.classList.add('inline-block');
+    }
+}
 
-    // checks if human wins
+const checkWinner = (playerAttack, computerAttack) => {
     if (
-        playerInput === 'rock' && cpuChoice === 'scissors' ||
-        playerInput === 'paper' && cpuChoice === 'rock' ||
-        playerInput === 'scissors' && cpuChoice === 'paper'
+        playerAttack === 'rock' && computerAttack === 'scissors' ||
+        playerAttack === 'paper' && computerAttack === 'rock' ||
+        playerAttack === 'scissors' && computerAttack === 'paper'
     ) {
-        alert('you win')
-        humanScore++;
-        console.log(`You chose: ${playerInput}`)
-        console.log(`CPU chose: ${cpuChoice}`)
-        console.log(`Your score: ${humanScore}`)
-        console.log(`CPU score: ${computerScore}`)
-        console.log('-----------------------------')
-    } else if (playerInput === cpuChoice) {
-        alert('draw')
-        console.log('-----------------------------')
+        playerScore++;
+        console.log(`Player won in round #${round}`)
+        console.log(`Player is ${playerAttack} and CPU is ${computerAttack}`)
+        console.log(`Player score: ${playerScore}`)
+        console.log(`Computer score: ${computerScore}`)
+        console.log(`-----------------------`)
+    } else if (playerAttack === computerAttack) {
+        console.log(`Tie in round #${round}`)
+        console.log(`Player is ${playerAttack} and CPU is ${computerAttack}`)
+        console.log(`Player score: ${playerScore}`)
+        console.log(`Computer score: ${computerScore}`)
+        console.log(`-----------------------`)
     } else {
-        alert('you lose')
         computerScore++;
-        console.log(`You chose: ${playerInput}`)
-        console.log(`CPU chose: ${cpuChoice}`)
-        console.log(`Your score: ${humanScore}`)
-        console.log(`CPU score: ${computerScore}`)
-        console.log('-----------------------------')
+        console.log(`Computer won in round #${round}`)
+        console.log(`Player is ${playerAttack} and CPU is ${computerAttack}`)
+        console.log(`Player score: ${playerScore}`)
+        console.log(`Computer score: ${computerScore}`)
+        console.log(`-----------------------`)
     }
+
+    if (playerScore === 2) {
+        isWon = true;
+
+        // hides the button
+        hideButtonChoices();
+
+        // show UI the reset button
+        whoWin = 'YOU WIN!'
+        whoWinText.textContent = whoWin;
+
+        winnerComponent.classList.remove('hidden');
+        winnerComponent.classList.add('absolute');
+
+        console.log('PLAYER WIN!')
+        console.log('------------')
+    } 
+
+    if (computerScore === 2) {
+        isWon = true;
+
+        // hides the button
+        hideButtonChoices();
+
+        // show UI the reset button
+        whoWin = 'CPU WIN!'
+        whoWinText.textContent = whoWin;
+
+        winnerComponent.classList.remove('hidden');
+        winnerComponent.classList.add('absolute');
+
+        console.log('CPU WIN!')
+        console.log('------------')
+    } 
 }
 
-if (humanScore === 3) {
-    alert('HUMAN WINS!')
+const resetState = () => {
+    playerScore = 0;
+    computerScore = 0;
+    whoWin = null;
+    isWon = false;
 }
 
-if (computerScore === 3) {
-    alert('COMPUTER WINS!')
+onPlayButton.addEventListener('click', () => {
+    // hides the onPlayComponent component
+    onPlayComponent.classList.add('hidden')
+    onPlayComponent.classList.remove('absolute')
+})
+
+for(const choiceButton of choicesAttackButtons) {
+    choiceButton.addEventListener('click', (e) => {
+        const attack = e.target.getAttribute('data-attack-type')
+        playerSelect(attack);
+    })
 }
+
+// resetButton.addEventListener('click', () => {
+//     unHideButtonChoices();
+
+//     resetState();
+    
+//     winnerComponent.classList.remove('absolute');
+//     winnerComponent.classList.add('hidden');
+    
+// })
+
+// STATES:
+// round
+// choices = ['rock', 'paper', 'scissors'];
+// playerScore = 0;
+// computerScore = 0;
+// component of scores for both players
+// isPlaying, this state will either stop the game or continue so the game will show a reset button to have a new game.
+// isWon, this state will show the component of winner.
