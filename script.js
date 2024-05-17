@@ -7,12 +7,22 @@ let computerScore = 0;
 let isWon = false;
 let whoWin = null;
 
+// ALERT COMPONENT 
+const alert1 = document.querySelector('#alert1')
+const alert2 = document.querySelector('#alert2')
+
+const closeAlert = (id) => {
+    console.log(`THE ID ${id} component is removed`)
+    document.querySelector(`#${id}`).classList.remove('absolute')
+    document.querySelector(`#${id}`).classList.add('hidden')
+}
+
 // reset button
-const resetButton = document.querySelector('#reset-button');
+// const resetButton = document.querySelector('#reset-button');
 
 // winner component
-const winnerComponent = document.querySelector('.winnerComponent');
-let whoWinText = document.querySelector('#who-win');
+// const winnerComponent = document.querySelector('.winnerComponent');
+// let whoWinText = document.querySelector('#who-win');
 
 // buttons component
 const attackButtonsChoices = document.querySelectorAll('.attack');
@@ -134,15 +144,15 @@ const resetState = () => {
     isWon = false;
 }
 
-resetButton.addEventListener('click', () => {
-    unHideButtonChoices();
+// resetButton.addEventListener('click', () => {
+//     unHideButtonChoices();
 
-    resetState();
+//     resetState();
     
-    winnerComponent.classList.remove('absolute');
-    winnerComponent.classList.add('hidden');
+//     winnerComponent.classList.remove('absolute');
+//     winnerComponent.classList.add('hidden');
     
-})
+// })
 
 // STATES:
 // round

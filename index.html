@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="style.css">
     <title>Rock Paper Scissors</title>
     <style type="text/tailwindcss">
@@ -11,32 +12,39 @@
             @apply p-4
         }
 
-        button {
-            @apply py-2 px-12 bg-slate-600 rounded-md shadow-md font-semibold text-xl text-white;
+        .bg-primary-color {
+            background: #153448;
+        }
+
+        .alert {
+            @apply w-11/12 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-black bg-white p-4 rounded-md shadow-md;
         }
       </style>
 </head>
-<body>
-    <!-- winner component -->
-    <!-- either absolute position or hidden -->
-    <div class="winnerComponent hidden top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-        <div class="flex flex-col gap-4">
-            <span id="who-win" class="text-[96px] font-semibold"></span>
-            <button id="reset-button" type="button" class="bg-yellow-300 font-semibold text-[96px] px-2 py-12">RESET</button>
+<body class="bg-primary-color text-white p-2">
+    
+    <!-- 2 alert alert component -->
+    <!-- to toggle this component just set display to hidden and absolute -->
+    <div id="alert1" class="alert absolute z-50">
+        <div class="flex flex-col gap-4 justify-center items-center text-center">
+            <h2 class="font-semibold text-[16px]"><i class="fa-solid fa-circle-exclamation"></i> NOTE</h2>
+            <p>This game only works only on mobile devices (360 x 640)</p>
+            <button onclick="closeAlert('alert1')" type="button" class="font-semibold cursor-pointer">CLOSE THIS NOTE</button>
         </div>
     </div>
 
-    <button type="button" class="attack">ROCK</button>
-    <button type="button" class="attack">PAPER</button>
-    <button type="button" class="attack">SCISSORS</button>
-    <!--  
+    <div id="alert2" class="alert absolute z-0">
+        <div class="flex flex-col gap-4 justify-center items-center text-center">
+            <h2 class="font-semibold text-[16px]"><i class="fa-solid fa-circle-exclamation"></i> NOTE</h2>
+            <p>This game is raised only to 5
+                You scored 5 and you WON the game!</p>
+            <button onclick="closeAlert('alert2')" type="button" class="font-semibold cursor-pointer">CLOSE THIS NOTE</button>
+        </div>
+    </div>
 
-        - Must have a history
-        - Must have a scoreboard
-        - Must have a button to start a new game
-        - Must have a button to restart the game
+    <!-- Initial UI component "image of rock paper scissors" and PLAY button -->
+    
 
-    -->
     <script src="script.js"></script>
 </body>
 </html>
