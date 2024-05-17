@@ -16,6 +16,14 @@
             background: #153448;
         }
 
+        .bg-secondary-color {
+            background-color: #FFFAB7;
+        }
+
+        .btn-play {
+            @apply text-[32px] font-semibold text-black bg-secondary-color py-2 px-8 rounded-md shadow-md;
+        }
+
         .alert {
             @apply w-11/12 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-black bg-white p-4 rounded-md shadow-md;
         }
@@ -25,25 +33,44 @@
     
     <!-- 2 alert alert component -->
     <!-- to toggle this component just set display to hidden and absolute -->
-    <div id="alert1" class="alert absolute z-50">
+    <!-- <div id="alert1" class="alert absolute z-50">
         <div class="flex flex-col gap-4 justify-center items-center text-center">
             <h2 class="font-semibold text-[16px]"><i class="fa-solid fa-circle-exclamation"></i> NOTE</h2>
             <p>This game only works only on mobile devices (360 x 640)</p>
             <button onclick="closeAlert('alert1')" type="button" class="font-semibold cursor-pointer">CLOSE THIS NOTE</button>
         </div>
-    </div>
+    </div> -->
 
-    <div id="alert2" class="alert absolute z-0">
+    <!-- <div id="alert2" class="alert absolute z-0">
         <div class="flex flex-col gap-4 justify-center items-center text-center">
             <h2 class="font-semibold text-[16px]"><i class="fa-solid fa-circle-exclamation"></i> NOTE</h2>
             <p>This game is raised only to 5
                 You scored 5 and you WON the game!</p>
             <button onclick="closeAlert('alert2')" type="button" class="font-semibold cursor-pointer">CLOSE THIS NOTE</button>
         </div>
+    </div> -->
+
+    <!-- Initial UI onplay component "image of rock paper scissors" and PLAY button -->
+    <div id="on-play-component" class="hidden top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+        <div class="flex flex-col gap-[32px]">
+            <img width="100%" height="auto" src="images/on_play_rps.png" alt="on-play-image-rps">
+            <button type="button" class="btn-play">PLAY</button>
+        </div>
     </div>
 
-    <!-- Initial UI component "image of rock paper scissors" and PLAY button -->
-    
+    <!-- MAIN PLAY -->
+    <main id="main-play" class="py-[32px] px-[20px] flex flex-col gap-[32px] justify-center items-center">
+        <h1 class="font-bold text-[24px]">Playing with CPU...</h1>
+
+        <div id="choices-component">
+            <h2 class="text-[20px] text-center font-bold mb-[16px]">Choices ⤵️</h2>
+            <div class="flex gap-[8px]">
+                <img class="attack-btn" src="images/choices/hand-rock.png" alt="hand-rock-image" data-attack-type="rock">
+                <img class="attack-btn" src="images/choices/hand-paper.png" alt="hand-paper-image" data-attack-type="paper">
+                <img class="attack-btn" src="images/choices/hand-scissors.png" alt="hand-scissors-image" data-attack-type="scissors">
+            </div>
+        </div>
+    </main>
 
     <script src="script.js"></script>
 </body>

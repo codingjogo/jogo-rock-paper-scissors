@@ -11,6 +11,13 @@ let whoWin = null;
 const alert1 = document.querySelector('#alert1')
 const alert2 = document.querySelector('#alert2')
 
+// ON play COMPONENT
+const onPlayComponent = document.querySelector('#on-play-component')
+const onPlayButton = document.querySelector('.btn-play')
+
+// buttons of attack choices
+const choicesAttackButtons = document.querySelectorAll('.attack-btn')
+
 const closeAlert = (id) => {
     console.log(`THE ID ${id} component is removed`)
     document.querySelector(`#${id}`).classList.remove('absolute')
@@ -142,6 +149,19 @@ const resetState = () => {
     computerScore = 0;
     whoWin = null;
     isWon = false;
+}
+
+onPlayButton.addEventListener('click', () => {
+    // hides the onPlayComponent component
+    onPlayComponent.classList.add('hidden')
+    onPlayComponent.classList.remove('absolute')
+})
+
+for(const choiceButton of choicesAttackButtons) {
+    choiceButton.addEventListener('click', (e) => {
+        const attack = e.target.getAttribute('data-attack-type')
+        playerSelect(attack);
+    })
 }
 
 // resetButton.addEventListener('click', () => {
